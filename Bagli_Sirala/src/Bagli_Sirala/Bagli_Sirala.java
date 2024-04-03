@@ -11,7 +11,7 @@ public class Bagli_Sirala {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Kullanıcıdan sıralama algoritmasını seçmesini isteme
+
         System.out.println("Sıralama algoritması seçiniz:");
         System.out.println("1. Kabarcık Sıralaması (Bubble Sort)");
         System.out.println("2. Seçim Sıralaması (Selection Sort)");
@@ -25,22 +25,21 @@ public class Bagli_Sirala {
             File file = new File(dosyaAdi);
             Scanner dosyaOkuyucu = new Scanner(file);
 
-            int maxSize = 100; // Maksimum dizi boyutu
-            Node[] orijinalDizi = new Node[maxSize]; // Orijinal dizimiz
-            Node[] siraliDizi = new Node[maxSize]; // Sıralama işlemi için kullanılacak dizi
+            int maxSize = 100;
+            Node[] orijinalDizi = new Node[maxSize];
+            Node[] siraliDizi = new Node[maxSize];
 
             int index = 0;
             while (dosyaOkuyucu.hasNextInt() && index < maxSize) {
                 int x = dosyaOkuyucu.nextInt();
                 Node node = new Node(x, index);
-                orijinalDizi[index] = node; // Okunan her sayıyı orijinal diziye ekleme
-                siraliDizi[index] = new Node(x, index); // Okunan her sayıyı sıralama dizisine ekleme
+                orijinalDizi[index] = node;
+                siraliDizi[index] = new Node(x, index);
                 index++;
             }
 
-            // Seçilen sıralama algoritmasına göre sıralama yapma
+
             if (siralamaAlgoritmasi == 1) {
-                // Kabarcık sıralaması
                 for (int i = 0; i < index - 1; i++) {
                     for (int j = 0; j < index - i - 1; j++) {
                         if (siraliDizi[j].x > siraliDizi[j + 1].x) {
@@ -52,7 +51,7 @@ public class Bagli_Sirala {
                     }
                 }
             } else if (siralamaAlgoritmasi == 2) {
-                // Seçim sıralaması
+
                 for (int i = 0; i < index - 1; i++) {
                     int minIndex = i;
                     for (int j = i + 1; j < index; j++) {
@@ -61,7 +60,7 @@ public class Bagli_Sirala {
                         }
                     }
 
-                    // Swap işlemi
+
                     Node temp = siraliDizi[minIndex];
                     siraliDizi[minIndex] = siraliDizi[i];
                     siraliDizi[i] = temp;
@@ -73,7 +72,7 @@ public class Bagli_Sirala {
 
             // Dizilerin yan yana yazdırılması
             System.out.println("X\t\tY\t\t\t\tX\t\tY");
-            System.out.println("-----------------------------------------------------------------");
+            System.out.println("- - - - - - - - - - - - - - - - - - -");
             for (int i = 0; i < index; i++) {
                 System.out.println(orijinalDizi[i].x + "\t\t" + orijinalDizi[i].y + "\t\t|" +
                         "\t\t" + siraliDizi[i].x + "\t\t" + siraliDizi[i].y);
@@ -89,4 +88,3 @@ public class Bagli_Sirala {
         }
     }
 }
-
